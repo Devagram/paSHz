@@ -14,14 +14,10 @@ int main(int argc, char **arguments)
 // must have at least one argument
 if(argc < 2)
 {
-    printf("You must enter exactly one target for mycat.\n");
-    return 0;
+    printf("You must enter at least one target for mycat.\n");
+    return 1;
 }
-if(argc > 2)
-{
-    printf("You must enter exactly one target for mycat.\n");
-    return 0;
-}
+
 int fd;     // file descriptor
 int fd2;
 int buf;    // buffer
