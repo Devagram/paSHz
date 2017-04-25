@@ -42,9 +42,7 @@ int main(int argc, char **argv)
 				break; 
 			case '?': 
 				fprintf(stderr, "Invalidoption -%c\n", optopt);
-				return 1; 
-				break:browse confirm saveas
-;
+				return 1;
 			}   
 		}
         	if ( recursive == TRUE )
@@ -229,7 +227,7 @@ void getName(char * buffer, char * name)
             	break;
         	}
     	}
-    	for ( i++, k = 0; i < n; i++, j++ )
+    	for ( i++, j = 0; i < k; i++, j++ )
         	name[j] = buffer[i];
     	name[j] = '\0';
 }

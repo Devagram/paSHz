@@ -215,6 +215,12 @@ int run_cmd(char **arguments)
 			}
 			argv1[i] = NULL;
 			held_index = m + 1;
+			
+			/* cease pipe attempt if user didn't provide a 2nd command */
+			if (arguments[held_index] == NULL) {
+				fprintf(stderr, "Second command not provided after '|'\n");
+				return 0;
+			}
 		}
 		m++;
 	}

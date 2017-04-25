@@ -3,7 +3,7 @@ CFLAGS=
 DEPS = mysh_routines.h
 OBJ = mysh.o mysh_routines.o
 
-make : mysh mycp mycat #myls
+make : mysh mycp mycat myls
 
 mysh : $(OBJ)
 	gcc -o mysh $^ $(CFLAGS) 
@@ -11,8 +11,8 @@ mysh : $(OBJ)
 mycp: mycp.o
 	gcc -o mycp mycp.o
 
-#myls: myls.o
-#	gcc -o myls myls.o
+myls: myls.o
+	gcc -o myls myls.o
 
 mycat: mycat.o
 	gcc -o mycat mycat.o
@@ -20,8 +20,8 @@ mycat: mycat.o
 mycp.o: mycp.c
 	cc -c mycp.c
 
-#myls.o: myls.c
-#	cc -c myls.c
+myls.o: myls.c
+	cc -c myls.c
 
 mycat.o: mycat.c
 	cc -c mycat.c

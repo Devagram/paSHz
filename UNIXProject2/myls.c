@@ -93,8 +93,8 @@ int myls(char *dir, int showsize, int showlong)
 	DIR *dirptr;  		/* pointer to directory */
 	struct dirent *dirstct;	/* directory struct */
 	struct stat sbuf;       /* stst struct*/
-	FILE *f; 		/* temp ptr to structf*/
-	FILE **filename; 	/* array of file names*/
+	file *f; 		/* temp ptr to structf*/
+	file **filename; 	/* array of file names*/
 	int filecounters;       /* counter to keep track of array*/
 	/*int incrament2; 	 second incramentaor for loops*/
 	int total = 0;		/* keep count of the num of blocks n dir*/
@@ -112,7 +112,7 @@ int myls(char *dir, int showsize, int showlong)
 		return(TRUE); 
 	}
 	/*update the name array*/
-	filename = (FILE **) malloc(sizeof(FILE *) * MAX_FCOUNT + 1);
+	filename = (file **) malloc(sizeof(file *) * MAX_FCOUNT + 1);
 	filecounters = 0;
 	
 	if(filename == NULL) 
@@ -137,7 +137,7 @@ int myls(char *dir, int showsize, int showlong)
 			perror("stat call failed");
 			return(FALSE);
 		}
-		if((f = (FILE *)malloc (sizeof(FILE *))) == NULL)
+		if((f = (file *) malloc(sizeof(file))) == NULL)
 		{
 			fprintf(stderr, "cannot malloc filename %s\n", 
 				dirstct->d_name);
@@ -157,7 +157,7 @@ int myls(char *dir, int showsize, int showlong)
 		}	
 	}
 	closedir(dirptr);
-	qsort(filename,filecounters,sizeof(FILE *), cmp_name);
+	qsort(filename,filecounters,sizeof(file *), compare_fileNames);
 	if(strcmp(dir, ".") != 0)
 		printf("%s: \n", dir);
 	if(showlong)
