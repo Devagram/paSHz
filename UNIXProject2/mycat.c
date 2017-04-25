@@ -6,6 +6,7 @@
 #include <unistd.h>   
 #include <sys/stat.h> 
 #include <fcntl.h>
+
 #define TRUE 1
 #define FALSE 0
 int main(int argc, char **arguments)
@@ -41,7 +42,7 @@ int buf;    // buffer
             write(fd2, &buf, 1);
         close(fd);  
     }
-return 1;
+return 0;
 }
 
 
