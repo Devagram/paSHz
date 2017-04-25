@@ -13,7 +13,12 @@ int main(int argc, char **arguments)
 // must have at least one argument
 if(argc < 2)
 {
-    printf("You must enter at least one argument to use mycat.\n");
+    printf("You must enter only one target to mycat.\n");
+    return 0;
+}
+if(argc > 2)
+{
+    printf("You must enter only one target to mycat.\n");
     return 0;
 }
 int fd;     // file descriptor
