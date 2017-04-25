@@ -27,9 +27,12 @@ int main(int argc, char **argv)
 	}    
 	if ( argc == 3 )
 	{
-		int returnValue = fileToFile(argv[1],argv[2]);
-		//	printf("Invalidoption");
-		return returnValue;
+		if( fileToFile(argv[1],argv[2]) == FALSE )
+		{
+			return 1;
+		}
+		else//	printf("Invalidoption");
+			return 0;
 	}   
 	if ( argc == 4 )
 	{
@@ -62,17 +65,17 @@ int fileToFile(const char* source, const char* destination)
     	if  ( files[0] == -1 )
 	{
         	printf("ERROR: You do not have permission to open file, or nonexistent choice.\n");
-        	return -1;
+        	return FALSE;
     	}
 	files[1] = open(destination, O_WRONLY | O_CREAT , 0644);    
     	if ( files[1] == -1 )
     	{
         	close(files[0]);
-        	return -1;
+        	return FALSE;
     	}    
     	while ( ( count = read(files[0], buffer, sizeof(buffer) ) ) != 0 )
         	write(files[1], buffer, count);   
-    	return 0;
+    	return TRUE;
 }
 
 void cpDir(const char * source, const char * destination)
@@ -103,7 +106,7 @@ void cpDir(const char * source, const char * destination)
                 	return;
         	}
             	struct stat old;            
-            	if ( stat(source, &old) == -1 )
+            	if ( stat(source, &old) == 2 )
 		{
                 	printf("mkdir(%s), stat(%s) error!\n", bufferDestination, sourceBuffer);
                 	return;
